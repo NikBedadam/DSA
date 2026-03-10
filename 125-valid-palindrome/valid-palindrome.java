@@ -1,12 +1,23 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        s = s.toLowerCase().replaceAll("[^a-z0-9]", "");
-        int n = s.length();
-        for(int i=0;i<n/2;i++){
-            if(s.charAt(i)!=s.charAt(n-1-i)){
-                return false;
-            }
+        String original = s.toLowerCase().replaceAll("[^a-z0-9]","");
+        String reversed = reverse(original);
+        if(!reversed.equals(original)){
+            return false;
         }
         return true;
+    }
+    public String reverse(String str){
+        char[] strArr = str.toCharArray();
+        int left = 0;
+        int right = strArr.length-1;
+        while(left<right){
+            char temp = strArr[left];
+            strArr[left]=strArr[right];
+            strArr[right]=temp;
+            left++;
+            right--;
+        }
+        return new String(strArr);
     }
 }
